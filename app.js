@@ -11,6 +11,8 @@ const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const user = require('./routes/users');
+const trip = require('./routes/trips');
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -54,6 +56,8 @@ app.use(session({
 
 app.use('/', index);
 app.use('/auth', auth);
+app.use('/trips', trip);
+app.use('/users', user);
 
 // -- error handlers
 
