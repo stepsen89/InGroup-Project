@@ -10,6 +10,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const index = require('./routes/index');
+const auth = require('./routes/auth');
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const app = express();
 
@@ -28,9 +32,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// -- session
 // -- routes
 
 app.use('/', index);
+app.use('/auth', auth);
 
 // -- error handlers
 
