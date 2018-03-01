@@ -11,4 +11,12 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+// router.get('/', (req, res, next) => {
+//   User.find({}, (err, users) => {
+//     if (err) { return res.json(err).status(500); }
+    
+//     return res.json(users);
+//   });
+// });
+
 module.exports = router;
