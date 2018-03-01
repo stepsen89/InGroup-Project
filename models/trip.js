@@ -17,7 +17,7 @@ const placeSchema = new Schema({
 
 const tripSchema = new Schema({
   name: String,
-  descriptopn: String,
+  description: String,
   members: [],
   places: [placeSchema]
 });

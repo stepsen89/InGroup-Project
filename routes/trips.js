@@ -11,4 +11,18 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/', (req, res, next) => {
+  
+  const newTrip = new Trip({
+    name: req.body.name,
+    description : req.body.description
+  });
+
+  newTrip.save((err) => {
+    if (err) { return res.status(500).json(err); }
+    return res.status(200).json(newTrip);
+  })
+
+});
+
 module.exports = router;
