@@ -12,18 +12,23 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  
   const newTrip = new Trip({
     name: req.body.name,
-    description : req.body.description,
+    description: req.body.description,
     members: [req.body.members]
   });
 
   newTrip.save((err) => {
     if (err) { return res.status(500).json(err); }
     return res.status(200).json(newTrip);
-  })
+  });
+});
 
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Trip.findById(id)
+    .then((result) => res.json(result))
+    .catch(next);
 });
 
 module.exports = router;
