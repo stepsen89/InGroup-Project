@@ -15,7 +15,8 @@ router.post('/', (req, res, next) => {
   
   const newTrip = new Trip({
     name: req.body.name,
-    description : req.body.descripti
+    description : req.body.description,
+    members: [req.body.members]
   });
 
   newTrip.save((err) => {
