@@ -5,7 +5,7 @@ const router = express.Router();
 
 const Trip = require('../models/trip');
 
-// Retrieve all trips 
+// Retrieve all trips
 router.get('/', (req, res, next) => {
   Trip.find()
     .then((result) => res.json(result))
@@ -40,6 +40,17 @@ router.get('/:id', (req, res, next) => {
   Trip.findById(id)
     .then((result) => res.json(result))
     .catch(next);
+});
+
+router.get('/:id/members', (req, res, next) => {
+  const id = req.params.id;
+  Trip.findById(id).populate('members')
+    .exec((err, result) => {
+      if (err) {
+        return next(err);
+      }
+      return res.json(result);
+    });
 });
 
 module.exports = router;

@@ -18,7 +18,10 @@ const placeSchema = new Schema({
 const tripSchema = new Schema({
   name: String,
   description: String,
-  members: [],
+  members: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   places: [placeSchema]
 });
 
