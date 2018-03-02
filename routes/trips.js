@@ -24,6 +24,13 @@ router.post('/', (req, res, next) => {
   });
 });
 
+router.get('/member/:id', (req, res, next) => {
+  const id = req.params.id;
+  Trip.find().where({ members: id})
+    .then((result) => res.json(result))
+    .catch(next);
+});
+
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   Trip.findById(id)
