@@ -53,4 +53,19 @@ router.get('/:id/members', (req, res, next) => {
     });
 });
 
+// how to add places to existing trip
+
+// router.post('/:id', (req, res, next) => {
+//   const place = ({
+//     name: req.body.name,
+//     description: req.body.description,
+//     coordinates: [req.body.lat, req.body.lng]
+//   });
+//   // save trip to DB
+//   newTrip.save((err) => {
+//     if (err) { return res.status(500).json(err); }
+//     return res.status(200).json(newTrip);
+//   });
+// });
+
 module.exports = router;
