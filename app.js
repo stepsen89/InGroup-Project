@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const cors = require('cors');
 
 const express = require('express');
@@ -22,16 +24,19 @@ const app = express();
 // -- database
 
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/project-three', {
-  keepAlive: true,
-  reconnectTries: Number.MAX_VALUE
-});
+mongoose.connect(process.env.MONGODB_URI);
 
 // -- middlewares
+// app.use(cors({
+//   credentials: true,
+//   origin: ['http://localhost:4200']
+// }));
+
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:4200']
+  origin: [process.env.CLIENT_URL]
 }));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
