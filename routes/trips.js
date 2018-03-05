@@ -70,4 +70,6 @@ router.post('/:id', (req, res, next) => {
   return res.json(place);
 });
 
+// @todo by refreshing the page
+
 module.exports = router;
