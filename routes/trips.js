@@ -53,7 +53,7 @@ router.get('/:id/members', (req, res, next) => {
     });
 });
 
-// how to add places to existing trip
+// add places to existing trip
 
 router.post('/:id', (req, res, next) => {
   const id = req.params.id;
