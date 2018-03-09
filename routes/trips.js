@@ -2,17 +2,18 @@
 
 const express = require('express');
 const router = express.Router();
-
 const Trip = require('../models/trip');
 
-// Retrieve all trips
+
+// ---Retrieve all trips
 router.get('/', (req, res, next) => {
   Trip.find()
     .then((result) => res.json(result))
     .catch(next);
 });
 
-// Create a new trip
+
+// --- Create a new trip
 router.post('/', (req, res, next) => {
   const newTrip = new Trip({
     name: req.body.name,
@@ -26,7 +27,8 @@ router.post('/', (req, res, next) => {
   });
 });
 
-// Retrieve all trips from the logged in user
+
+// --- Retrieve all trips from the logged in user
 router.get('/member/:id', (req, res, next) => {
   const id = req.params.id;
   Trip.find().where({members: id})
@@ -34,7 +36,8 @@ router.get('/member/:id', (req, res, next) => {
     .catch(next);
 });
 
-// Retrieve one specific trip
+
+// --- Retrieve one specific trip
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   Trip.findById(id)
@@ -53,8 +56,8 @@ router.get('/:id/members', (req, res, next) => {
     });
 });
 
-// add places to existing trip
 
+// --- Add places to existing trip
 router.post('/:id', (req, res, next) => {
   const id = req.params.id;
   const place = {
@@ -70,6 +73,5 @@ router.post('/:id', (req, res, next) => {
   return res.json(place);
 });
 
-// @todo by refreshing the page
 
 module.exports = router;
